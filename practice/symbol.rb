@@ -17,23 +17,23 @@
 
 class SymbolManipulator
   def hash_key_switcher(hashObj)
-    resArr = Array.new
+    resArr = {}
 
     if hashObj.is_a?(Hash)
-      hashObj.each.with_index{ |key, value|
-        if key.is_a?(String)
-          resArr[key.to_sym] ＝value
-        elsif key.is_a?(Symbol)
-          resArr[key.to_s] ＝ value
+      hashObj.each do |k, v|
+        if k.is_a?(String)
+          resArr[k.to_sym] = v
+        elsif k.is_a?(Symbol)
+          resArr[k.to_s] = v
         else
-          resArr[key.to_sym] ＝ value
+          resArr[k.to_s] = v
         end
-      }
+      end
     else
       resArr = hashObj
     end
 
-    puts resArr
+    return resArr
   end
 end
 
@@ -41,4 +41,7 @@ end
 input_hash = { hoge: "foo", "piyo" => :boom, 1 => "one" }
 
 sm = SymbolManipulator.new
-sm.hash_key_switcher(input_hash)
+reslut = sm.hash_key_switcher(input_hash)
+
+p input_hash
+p reslut
