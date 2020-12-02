@@ -59,6 +59,38 @@ class Args
   end
 
   def configure(benri: benrisugi, sugoi: sugosugi, **options)
+
+    p "Configure 'benri' as #{benri}"
+    p "Configure 'sugoi as #{sugoi}"
+
+    #c_OO以外のキーワードを考慮したバージョン
+    arr = Hash.new
+    temp_c = Hash.new
+    temp_nc = Hash.new
+
+    Hash[options].each do |k, v|
+      if k.start_with?('c_')
+          temp_c[ k.to_s.delete('c_') ] = v
+      else
+          temp_nc[ k.to_s ] = v
+      end
+    end
+
+    arr = Hash[temp_c.sort].merge(temp_nc)
+
+    arr.each do |k, v|
+        p "Configure '#{k}' as #{v}"
+    end
+
+#c_OOのキーワード以外もソートしてしまうバージョン
+#    Hash[ options.sort ].each do |k, v|
+#        if k.start_with?('c_')
+#          p "Configure '#{k.to_s.delete('c_')}' as #{v}"
+#        else
+#          p "Configure '#{k.to_s}' as #{v}"
+#        end
+#    end
+
   end
 
 end
@@ -74,3 +106,5 @@ res = a.count_object(inputArray, "c")
 p inputArray
 p res
 
+puts "\n---3---"
+a.configure(benri: "yabai", sugoi: "oniyabai", c_hoge: "uhyo-", c_foo: "iihanashi", a_nyan: "nekosuke")
