@@ -33,3 +33,5 @@ rm -rf /usr/local/lib/ruby/gems/x.x.x/extensions/x86_64-darwin-16/x.x.x/psych-x.
 ```
 brew reinstall packagename(openssl, ruby-build, rbenv, etc...)
 ```
+
+> 参考 : https://github.com/rbenv/ruby-build/issues/1124
